@@ -16,6 +16,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Footer from "@/components/footer";
 import { useRouter } from "next/navigation";
+import BackButton from "@/components/ui/BackButton";
 
 function page() {
   const [loading, setLoading] = useState(true);
@@ -85,31 +86,7 @@ function page() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
       />
-      <button
-        onClick={handleBack}
-        className="group relative top-30 left-20 z-50
-    flex items-center justify-center
-    bg-white/10 hover:bg-orange-500
-    border border-white/20 hover:border-orange-500
-    backdrop-blur-md
-    px-4 py-3 rounded-full
-    transition-all duration-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 text-white group-hover:text-white transition-colors"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
+      <BackButton/>
       <div className="min-h-screen flex flex-col selection:bg-orange-400 mt-20 selection:text-black bg-black">
         <main className="flex-grow">
           {/* HERO */}

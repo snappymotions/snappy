@@ -21,7 +21,8 @@ const PROJECTS: Project[] = [
     tagline: "Logo Design, Branding Guidelines",
     description:
       "Creating a flagship destination for one of the world's most iconic brands.",
-    image: "https://snappy-motions.b-cdn.net/MotionDesign/motion%20design%20slide.mp4",
+    image:
+      "https://snappy-motions.b-cdn.net/MotionDesign/motion%20design%20slide.mp4",
     secondaryImage: "",
     labels: ["Branding", "2024", "Design"],
   },
@@ -31,9 +32,9 @@ const PROJECTS: Project[] = [
     tagline: "Website Design, 3D Render, Implementation",
     description:
       "Enabling open global finance without borders using the Lightning Network.",
-    image: "https://snappy-motions.b-cdn.net/GraphicsDesign/graphicsServicesBg.mp4",
-    secondaryImage:
-      "",
+    image:
+      "https://snappy-motions.b-cdn.net/GraphicsDesign/graphicsServicesBg.mp4",
+    secondaryImage: "",
     labels: ["Fintech", "Web3", "Product"],
   },
   {
@@ -42,15 +43,14 @@ const PROJECTS: Project[] = [
     tagline: "Best Cup Visual Identity, Packaging, Art Direction",
     description: "A premium digital experience for a global coffee community.",
     image: "https://snappy-motions.b-cdn.net/Film/video%20production%20bg.mp4",
-    secondaryImage:
-      "",
+    secondaryImage: "",
     labels: ["E-commerce", "Lifestyle", "UI/UX"],
   },
 ];
 
 const ClientService = () => {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-const router = useRouter();
+  const router = useRouter();
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -137,7 +137,7 @@ const router = useRouter();
               key={p.id}
               onMouseEnter={() => setActiveProject(p)}
               onMouseLeave={() => setActiveProject(null)}
-              onClick={()=>router.push(`${p.id}`)}
+              onClick={() => router.push(`${p.id}`)}
               className={`
     group flex items-center gap-2 px-6 py-3 rounded-full
     backdrop-blur-md border border-white/10
@@ -182,7 +182,9 @@ const router = useRouter();
           return (
             <button
               key={p.id}
-              onClick={() => setActiveProject(active ? null : p)}
+              onMouseEnter={() => setActiveProject(p)}
+              onMouseLeave={() => setActiveProject(null)}
+              onClick={() => router.push(`${p.id}`)}
               className={`
           flex items-center gap-1.5
           px-3 py-1.5 rounded-full text-xs
@@ -230,17 +232,17 @@ const router = useRouter();
         <div className="absolute inset-0 bg-black/50 -z-10" />
 
         {!activeProject ? (
-         <section className="w-full h-screen flex items-center justify-center bg-black">
-  <div className="text-center w-full max-w-4xl px-4 mx-auto">
-    <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/50">
-      Philosophy
-    </p>
-    <h1 className="text-[clamp(2.8rem,8vw,7rem)] font-light leading-none">
-      Design<span className="text-orange-500">.</span> Transform
-      <span className="text-orange-500">.</span> Evolve
-    </h1>
-  </div>
-</section>
+          <section className="w-full h-screen flex items-center justify-center bg-black">
+            <div className="text-center w-full max-w-4xl px-4 mx-auto">
+              <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/50">
+                Philosophy
+              </p>
+              <h1 className="text-[clamp(2.8rem,8vw,7rem)] font-light leading-none">
+                Design<span className="text-orange-500">.</span> Transform
+                <span className="text-orange-500">.</span> Evolve
+              </h1>
+            </div>
+          </section>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl w-full items-center">
             <div className="lg:col-span-7 text-center lg:text-left">

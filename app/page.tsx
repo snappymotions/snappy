@@ -14,7 +14,7 @@ import ModernPortfolioAuto from "@/components/ModernPortfolio";
 import { AboutSection } from "@/components/About";
 import Footer from "@/components/footer";
 import Loader from "@/components/Loader";
-
+import MobileServiceCards from "@/components/MobileServiceCards";
 
 // ✅ Force static generation for low TTFB
 export const dynamic = "force-static";
@@ -157,7 +157,15 @@ export default function Page() {
             <ClientService />
             <AboutSection />
 
-            <ScrollAnimatedCards />
+            {/* Desktop */}
+            <div className="hidden md:block">
+              <ScrollAnimatedCards />
+            </div>
+
+            {/* Mobile */}
+            <div className="block md:hidden">
+              <MobileServiceCards />
+            </div>
             <ModernPortfolioAuto />
             <Footer />
             {/* <Loader/> */}

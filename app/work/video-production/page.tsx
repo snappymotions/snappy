@@ -331,6 +331,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import VideoSection from "@/components/videoproduction/VideoSection";
 import ReelsSection from "@/components/videoproduction/ReelsSection";
 import Footer from "@/components/footer";
+import BackButton from "@/components/ui/BackButton";
 
 // 👉 Import your data from wherever you keep it
 export const VIDEOS: VideoData[] = [
@@ -655,23 +656,7 @@ useEffect(() => {
       <CustomCursor />
 
       {/* BACK BUTTON */}
-      <button
-        onClick={handleBack}
-        className="group fixed top-6 left-6 z-50 flex items-center justify-center
-        bg-white/10 hover:bg-orange-500 border border-white/20 hover:border-orange-500
-        backdrop-blur-md px-4 py-3 rounded-full transition-all duration-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
+      <BackButton/>
 
       {/* HERO SECTION */}
       <div className="relative h-screen w-full bg-black overflow-hidden">

@@ -86,7 +86,7 @@ export const PROJECTS: Project[] = [
     title: 'AURORA',
     category: 'Graphics Designing',
     year: '2025',
-    imageUrl: 'https://snappy-motions.b-cdn.net/Saksham/Blueberry%20Frozen%20Deset.png',
+    imageUrl: 'https://snappy-motions.b-cdn.net/GraphicsDesign/projectImg/Blueberry%20Frozen%20Deset.png',
     bgColor: '#581C87',
     accentColor: '#D8B4FE',
     url: "/work/graphics-designing"

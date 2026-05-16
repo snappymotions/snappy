@@ -1,82 +1,54 @@
+// About.tsx
 
-"use client"
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRouter } from 'next/navigation';
-
-import bgImage from "/ab.webp";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const AboutSection: React.FC = () => {
-  const textRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
+
   const router = useRouter();
 
-  // const text =
-  //   "I AM A DUTCH DIGITAL DESIGNER AND WEB DEVELOPER WITH OVER 8 YEARS OF EXPERIENCE, SPECIALIZING AT THE CROSSROADS OF DESIGN, ANIMATION, AND WEB DEVELOPMENT. MY BROAD EXPERTISE ALLOWS ME TO APPROACH DESIGN CHALLENGES FROM MULTIPLE PERSPECTIVES.";
+  const text =
+    "SNAPPY MOTION IS A CREATIVE STUDIO SPECIALIZING IN MOTION DESIGN, GRAPHIC DESIGN, AND VIDEO PRODUCTION. WE CRAFT VISUALLY ENGAGING CONTENT THAT TELLS STORIES, ELEVATES BRANDS, AND LEAVES A LASTING IMPRESSION. OUR TEAM COMBINES INNOVATIVE DESIGN, ANIMATED VISUALS, AND STRATEGIC THINKING TO DELIVER HIGH-QUALITY MEDIA SOLUTIONS TAILORED TO YOUR NEEDS.";
 
-const text =
-  "SNAPPY MOTION IS A CREATIVE STUDIO SPECIALIZING IN MOTION DESIGN, GRAPHIC DESIGN, AND VIDEO PRODUCTION. WE CRAFT VISUALLY ENGAGING CONTENT THAT TELLS STORIES, ELEVATES BRANDS, AND LEAVES A LASTING IMPRESSION. OUR TEAM COMBINES INNOVATIVE DESIGN, ANIMATED VISUALS, AND STRATEGIC THINKING TO DELIVER HIGH-QUALITY MEDIA SOLUTIONS TAILORED TO YOUR NEEDS.";
+  // GSAP CHARACTER REVEAL
+  useEffect(() => {
+    if (!textRef.current) return;
 
+    const chars = textRef.current.querySelectorAll("span");
 
-  // ✅ GSAP SCROLL ANIMATION
-  // useEffect(() => {
-  //   if (!textRef.current) return;
+    gsap.set(chars, {
+      color: "#6B7280",
+    });
 
-  //   const chars = textRef.current.querySelectorAll("span");
+    const tween = gsap.to(chars, {
+      color: "#ffffff",
+      stagger: {
+        each: 0.015,
+        from: "start",
+      },
+      ease: "none",
+      scrollTrigger: {
+        trigger: textRef.current,
+        start: "top 85%",
+        end: "bottom 40%",
+        scrub: 0.6,
+      },
+    });
 
-  //   const tween = gsap.fromTo(
-  //     chars,
-  //     { color: "#9CA3AF" },
-  //     {
-  //       color: "#ffffff",
-  //       stagger: 0.02,
-  //       ease: "none",
-  //       scrollTrigger: {
-  //         trigger: textRef.current,
-  //         start: "bottom 20%",
-  //         end: "top 90%",
-  //         scrub: 1,
-  //       },
-  //     }
-  //   );
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, []);
 
-  //   return () => {
-  //     tween.scrollTrigger?.kill();
-  //     tween.kill();
-  //   };
-  // }, []);
-useEffect(() => {
-  if (!textRef.current) return;
-
-  const chars = textRef.current.querySelectorAll("span");
-
-  // Set initial color immediately
-  gsap.set(chars, { color: "#9CA3AF" });
-
-  const tween = gsap.to(chars, {
-    color: "#ffffff",
-    stagger: {
-      each: 0.02,
-      from: "start", // start from first character
-    },
-    ease: "none",
-    scrollTrigger: {
-      trigger: textRef.current,
-      start: "top 80%",   // animation starts when top of text is 80% from top of viewport
-      end: "bottom 20%",  // ends when bottom of text reaches 20% from top
-      scrub: 0.5,         // smooth scrub
-    },
-  });
-
-  return () => {
-    tween.scrollTrigger?.kill();
-    tween.kill();
-  };
-}, []);
-
-  // ✅ TEXT SPLIT
+  // SPLIT TEXT
   const splitText = (text: string) =>
     text.split("").map((char, i) => (
       <span key={i} className="inline-block">
@@ -84,48 +56,142 @@ useEffect(() => {
       </span>
     ));
 
-  // ✅ NAVIGATION
+  // NAVIGATION
   const goToDashboard = () => {
-     router.push('/contact');
+    router.push("/contact");
   };
 
   return (
     <section
-      className="relative w-full h-[80vh] overflow-hidden"
+      className="
+        relative w-full overflow-hidden
+
+        min-h-[70vh]
+        md:min-h-[85vh]
+
+        py-16 md:py-24
+      "
       style={{
         backgroundImage: `url(/ab.webp)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/30" />
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative my-20 z-10 flex flex-col items-center justify-center h-fit py-12 px-4 sm:px-8 md:px-16 text-center max-w-7xl mx-auto rounded-3xl bg-black/30 backdrop-blur-xl border border-white/10">
-        <h2 className="text-orange-500 font-bold tracking-[0.3em] uppercase text-xs sm:text-lg mb-6">
+      {/* CONTENT */}
+      <div
+        className="
+          relative z-10
+
+          mx-4 md:mx-auto
+          flex flex-col items-center justify-center
+
+          rounded-2xl md:rounded-3xl
+
+          border border-white/10
+          bg-black/30
+          backdrop-blur-xl
+
+          px-5 py-10
+          sm:px-8
+          md:px-14 md:py-16
+
+          text-center
+
+          max-w-6xl
+        "
+      >
+        {/* LABEL */}
+        <h2
+          className="
+            mb-5 md:mb-7
+
+            text-[10px]
+            sm:text-xs
+            md:text-sm
+
+            font-bold
+            uppercase
+            tracking-[0.35em]
+
+            text-orange-500
+          "
+        >
           ABOUT
         </h2>
 
+        {/* TEXT */}
         <h1
           ref={textRef}
-          className="font-bold text-lg tracking-wide sm:text-2xl md:text-4xl lg:text-3xl"
+          className="
+            font-bold uppercase
+
+            leading-[1.4]
+            tracking-[0.02em]
+
+            text-base
+            sm:text-xl
+            md:text-3xl
+            lg:text-4xl
+
+            max-w-[95%]
+            md:max-w-[90%]
+          "
         >
           {splitText(text)}
         </h1>
 
-        <div className="mt-10">
+        {/* BUTTON */}
+        <div className="mt-8 md:mt-12">
           <button
             onClick={goToDashboard}
-            className="group relative inline-flex items-center justify-center
-              px-6 sm:px-8 py-3 font-bold text-white uppercase
-              text-xs sm:text-sm tracking-wider
-              bg-gradient-to-r from-orange-600 to-orange-500
-              rounded-xl transition-all duration-300
-              shadow-[0_0_20px_rgba(234,88,12,0.4)]
-              hover:shadow-[0_0_30px_rgba(234,88,12,0.6)]
-              hover:scale-105 active:scale-95 overflow-hidden"
+            className="
+              group relative overflow-hidden
+
+              inline-flex items-center justify-center
+
+              rounded-xl
+
+              bg-gradient-to-r
+              from-orange-600
+              to-orange-500
+
+              px-6 py-3
+              md:px-8 md:py-4
+
+              text-[11px]
+              sm:text-sm
+
+              font-bold uppercase
+              tracking-[0.18em]
+
+              text-white
+
+              transition-all duration-300
+
+              shadow-[0_0_20px_rgba(234,88,12,0.35)]
+
+              hover:scale-105
+              hover:shadow-[0_0_30px_rgba(234,88,12,0.55)]
+
+              active:scale-95
+            "
           >
-            <span className="relative z-10">More About Me</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative z-10">
+              More About Me
+            </span>
+
+            <div
+              className="
+                absolute inset-0
+                translate-y-full
+                bg-white/20
+                transition-transform duration-300
+                group-hover:translate-y-0
+              "
+            />
           </button>
         </div>
       </div>
